@@ -1,0 +1,17 @@
+request.session - dictionary
+
+(i)  Database Sessions(default)- Sessions data is stored in database
+(ii) File-based Session - Sessions is stored in filesystem
+(iii)Cached Sessions - CACHES setting we can specify where to store session data 
+(iv) Cached Database Session - Writethrough cache and database
+(v)  Cookie-based session - Session data is stored in cookies sent to browser
+
+Session-related settings :
+SESSION_COOKIE_AGE : duration of cookies in seconds (default : 1209600) 2 weeks
+SESSION_COOKIE_SECURE : Cookie should only be sent if the connection is HTTPS connection
+SESSION_EXPIRE_AT_BROWSER_CLOSE  : Boolean indicating session has to expire when browser is closed
+SESSION_SAVE_EVERY_REQUEST : Boolean if True will save session to database on every request
+SESSION_COOKIE_DOMAIN : domain used for session cookies
+
+
+{'product_id' : {'quantity' : quantity,'price':price}}
