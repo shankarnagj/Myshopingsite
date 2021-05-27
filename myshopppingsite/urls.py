@@ -19,5 +19,6 @@ from django.urls.conf import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cart/',include('cartapp.urls', namespace = 'cart')),
     path('',include('myshop.urls',namespace = 'myshop')),
 ]
