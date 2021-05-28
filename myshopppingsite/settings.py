@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #my apps
     'myshop.apps.MyshopConfig',
     'cartapp.apps.CartappConfig',
+    'ordersapp.apps.OrderappConfig',
 
 ]
 
@@ -60,10 +61,11 @@ ROOT_URLCONF = 'myshopppingsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,"templates")],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'cartapp.context_processors.cart',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',

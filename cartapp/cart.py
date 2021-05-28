@@ -1,10 +1,9 @@
 from decimal import Decimal
-from typing_extensions import Required
 from django.conf import settings
 from myshop.models import Product
 
 class Cart(object):
-    def __init__(self):
+    def __init__(self,request):
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart :
@@ -13,9 +12,9 @@ class Cart(object):
         self.cart = cart
     
     def add(self,product,quantity = 1 ,override_quantity = False):
-        product_id = str(product_id)
+        product_id = str(product.id)
         if product_id not in self.cart:
-            self[product_id] = {'quantity' : 0,'price' :str(product.price)}
+            self.cart[product_id] = {'quantity' : 0,'price' :str(product.price)}
         
         if override_quantity:
             self.cart[product_id]['quantity'] = quantity
@@ -28,7 +27,7 @@ class Cart(object):
         self.session.modified = True
     
     def remove(self,product) :
-        product_id = str(product_id)
+        product_id = str(product.id)
         if product_id in self.cart:
             del self.cart[product_id]
 
@@ -40,7 +39,7 @@ class Cart(object):
 
         cart = self.cart.copy()
         for product in products :
-            cart[str(product_id)]['product'] = product
+            cart[str(product.id)]['product'] = product
 
         for item in cart.values():
             item['price'] = Decimal(item['price'])
