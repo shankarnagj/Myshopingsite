@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # Application definition
 
@@ -42,7 +44,8 @@ INSTALLED_APPS = [
     #my apps
     'myshop.apps.MyshopConfig',
     'cartapp.apps.CartappConfig',
-    'ordersapp.apps.OrderappConfig',
+    'ordersapp.apps.OrdersappConfig',
+    'payment.apps.PaymentConfig',
 
 ]
 
@@ -56,7 +59,22 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'myshopppingsite.urls'
+ROOT_URLCONF = 'myshoppingsite.urls'
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = 'd6858qpwp2n5hb95' # Merchant ID
+BRAINTREE_PUBLIC_KEY = '8bw2fcqvzz7qt63t' # Public Key
+BRAINTREE_PRIVATE_KEY = '4bb2d2350c746c409061499759afef64' # Private key
+
+import braintree
+
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY
+)
+
 
 TEMPLATES = [
     {
@@ -75,7 +93,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'myshopppingsite.wsgi.application'
+WSGI_APPLICATION = 'myshoppingsite.wsgi.application'
 
 
 # Database
