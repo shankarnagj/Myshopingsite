@@ -60,6 +60,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'myshoppingsite.urls'
+STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 
 # Braintree settings
 BRAINTREE_MERCHANT_ID = 'd6858qpwp2n5hb95' # Merchant ID
